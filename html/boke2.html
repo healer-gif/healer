@@ -15,6 +15,7 @@
 			background: url(../images/0005018405589460_b.jpg)no-repeat;
 			background-size: 100% 100%;
 			background: rgb(0.2);
+			background-attachment: fixed;
 		}
 		#yi{
 			display: block;
@@ -63,8 +64,9 @@
 			margin-top: 50px;
 			line-height: 60px;
 			font-size: 25px;
-			color: #FFF;
-			/*list-style: block;*/
+			color: #6a5acd;
+			/*list-style-type: circle;*/
+
 		}
 		#m{
 			text-align: center;
@@ -114,35 +116,59 @@
 		#tu{
 			width: 18%;
 			height: 200px;
-			background: url(../images/xinyinli.jpg);
-			background-size: 100% 100%;
-			border-radius: 40px;
 			margin-left: 80%;
 			margin-top: 50px;
 			position: absolute;
 			opacity: 0.8;
+			border-radius: 40px;
+			overflow: hidden;
+		}
+		#tu img{
+			width: 100%;
+			height: 100%;
+			border-radius: 40px;
+			transition: all 1s;
+		}
+		#tu img:hover{
+			transform: scale(1.4);
 		}
 		#tu2{
 			width: 18%;
 			height: 200px;
-			background: url(../images/shushiquan.jpg);
-			background-size: 100% 100%;
 			border-radius: 40px;
 			margin-left: 80%;
 			margin-top: 50px;
 			position: absolute;
 			opacity: 0.8;
+			overflow: hidden;
+		}
+		#tu2 img{
+			width: 100%;
+			height: 100%;
+			border-radius: 40px;
+			transition: all 1s;
+		}
+		#tu2 img:hover{
+			transform: scale(1.4);
 		}
 		#tu3{
 			width: 18%;
 			height: 200px;
-			background: url(../images/yuan.jpg);
-			background-size: 100% 100%;
 			border-radius: 40px;
 			margin-left: 80%;
 			margin-top: 50px;
 			position: absolute;
 			opacity: 0.8;
+			overflow: hidden;
+		}
+		#tu3 img{
+			width: 100%;
+			height: 100%;
+			border-radius: 40px;
+			transition: all 1s;
+		}
+		#tu3 img:hover{
+			transform: scale(1.4);
 		}
 		#p1{
 			font-size: 40px;
@@ -189,7 +215,7 @@
 		<div id = "head">
 			 <button onclick="fn()">🎡</button>
 
-			<img src="../images/null-5612bcb5bffbea56.jpg">
+			<img id="img" src="../images/null-5612bcb5bffbea56.jpg">
 		</div>
 		<div id = "yi">
 			<p><b>healer</b></p>
@@ -208,7 +234,7 @@
 		    <div id= "m">目录</div>
 		    <ul>
 		    	<li>TFboys</li>
-		    	<li>Karry</li>
+		    	<li><a href="boke1.html" style="color: #6a5acd;">Karry</a></li>
 		    	<li>Jackson</li>
 		    	<li>Roy</li>
 		    	<li>Music</li>
@@ -220,7 +246,7 @@
 	<div id = "right">
 		<div id = "shang">
 			<div id= "zi">
-				<p id = "p1"><b><i><a href = "#" style="color: black;">心引力</a></i></b></p>
+				<p id = "p1"><b><i><a href = "boke1.html" style="color: black;">心引力</a></i></b></p>
 				<p id = "p2">&nbsp&nbsp&nbsp&nbsp&nbsp我想这是 心引力的定律  
 	      		   找到你想对你说
 				   在一起我和你 早已慢慢靠近
@@ -232,7 +258,9 @@
 				   我跟着你的脚印 倒数四三二一
 				</p>
 			</div>
-			<div id = "tu"></div>
+			<div id = "tu">
+				<img src="../images/xinyinli.jpg">
+			</div>
 		</div>
 		<div id = "zhong">
 			<div id = "zi2">
@@ -248,7 +276,9 @@
 						往前吧 大闹一场
 				</p>
 			</div>
-			<div id = "tu2"></div>
+			<div id = "tu2">
+				<img src="../images/shushiquan.jpg">
+			</div>
 		</div>
 		<div id = "xia">
 			<div id = "zi3">
@@ -265,7 +295,9 @@
 						会陷入 灿烂的 疼痛的 漩涡
 				</p>
 			</div>
-			<div id = "tu3"></div>
+			<div id = "tu3">
+				<img src="../images/yuan.jpg">
+			</div>
 		</div>
 	</div>
 	<script type="text/javascript">		
@@ -285,6 +317,32 @@
 				a.style.display = 'block';
 				
 			}	
+		}
+
+		var rotateVal = 0;//旋转角度
+		var InterVal //定时器
+		window.onload = function(){
+			//网页加载完成后即运行rotate函数
+			rotate();
+			//鼠标悬浮在图片上时，停止旋转，即清除定时器
+			document.getElementById('img').onmousemove = function(){
+				clearInterval(InterVal);
+			}
+			//鼠标离开图片时，继续旋转，即停止运行定时器
+			document.getElementById('img').onmouseleave = function(){
+				rotate();
+			}
+		}
+		//设置定时器
+		function rotate(){
+			InterVal =setInterval(function(){
+				var img = document.getElementById('img');
+				rotateVal += 1;
+				//设置旋转属性顺时针
+				img.style.transform = 'rotate('+ rotateVal + 'deg)';
+				//设置旋转时的动画 匀速0.1s
+				img.style.transition = '0.2s linear'
+			},100)
 		}
 	</script>
 	
